@@ -12,7 +12,13 @@ pivotRouter.get(
   verifyJwt,
   handleAsync(pivotController.getUserPivots)
 );
-// pivotRouter.get('/:id');
+
+pivotRouter.get(
+  '/:id',
+  verifyJwt,
+  handleAsync(pivotController.getPivotById)
+);
+
 pivotRouter.post(
   '/',
   verifyJwt,
