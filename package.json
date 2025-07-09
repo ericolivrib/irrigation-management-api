@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "src/http/server.ts",
   "scripts": {
-    "dev": "tsx watch src/http/server.ts",
+    "dev": "tsx watch --env-file=src/env/.env src/http/server.ts",
     "lint": "eslint"
   },
   "keywords": [],
