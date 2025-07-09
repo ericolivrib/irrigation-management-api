@@ -5,5 +5,5 @@ export class Pivot {
   description: string;
   flowRate: number;
   minApplicationDepth: number;
-  userId: bigint;
+  userId: UUID;
 }
