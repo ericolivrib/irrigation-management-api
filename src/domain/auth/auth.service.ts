@@ -2,8 +2,13 @@ import { randomUUID } from "node:crypto";
 import { User } from "../../common/models/user.model";
 import { RegisterUserRequestBody } from "./dtos/register-user-request-body.dto";
 import { RegisterUserResponseBody } from "./dtos/register-user-response-body.dto";
-import { genSalt, hash } from "bcryptjs";
 import { ConflictError } from "../../common/errors/conflict.error";
+import { LoginResponseBody } from "./dtos/login-response-body.dto";
+import { UnauthorizedError } from "../../common/errors/unauthorized.error";
+
+import * as jwt from "jsonwebtoken";
+import * as bcrypt from "bcryptjs";
+import { JWT_EXPIRES_IN, JWT_SECRET } from "../../env/jwt.env";
 
 const users: User[] = [];
 const SALT_ROUNDS = 10;
@@ -16,8 +21,8 @@ export const authService = {
       throw new ConflictError("User already exists");
     }
 
-    const salt = await genSalt(SALT_ROUNDS);
-    const hashedPassword = await hash(newUser.password, salt);
+    const salt = await bcrypt.genSalt(SALT_ROUNDS);
+    const hashedPassword = await bcrypt.hash(newUser.password, salt);
 
     const user: User = {
       id: randomUUID(),
@@ -32,4 +37,36 @@ export const authService = {
       username: user.username
     };
   },
+
+  login: async (username: string, password: string): Promise<LoginResponseBody> => {
+    const existentUser = users.find(user => user.username === username);
+
+    if (!existentUser) {
+      throw new UnauthorizedError("Invalid username or password");
+    }
+
+    const verifyPassword = await bcrypt.compare(password, existentUser.password);
+
+    if (!verifyPassword) {
+      throw new UnauthorizedError("Invalid username or password");
+    }
+
+    const payload = {
+      iss: 'Irrigation Management API',
+      sub: existentUser.id,
+      jti: randomUUID(),
+    };
+
+    const expiresIn = JWT_EXPIRES_IN;
+
+    const token = jwt.sign(payload, JWT_SECRET, {
+      expiresIn,
+      algorithm: 'HS256'
+    });
+
+    return {
+      token,
+      expiresIn: new Date(Date.now() + expiresIn * 1000)
+    }
+  }
 }
