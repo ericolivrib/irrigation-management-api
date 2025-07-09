@@ -3,12 +3,19 @@ import { User } from "../../models/user.model";
 import { RegisterUserRequestBody } from "./dtos/register-user-request-body.dto";
 import { RegisterUserResponseBody } from "./dtos/register-user-response-body.dto";
 import { genSalt, hash } from "bcryptjs";
+import { ConflictError } from "../../common/errors/conflict.error";
 
 const users: User[] = [];
 const SALT_ROUNDS = 10;
 
 export const authService = {
   registerUser: async (newUser: RegisterUserRequestBody): Promise<RegisterUserResponseBody> => {
+    const userAlreadyExists = users.some(user => user.username === newUser.username);
+
+    if (userAlreadyExists) {
+      throw new ConflictError("User already exists");
+    }
+
     const salt = await genSalt(SALT_ROUNDS);
     const hashedPassword = await hash(newUser.password, salt);
 
