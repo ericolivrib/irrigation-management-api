@@ -8,7 +8,7 @@ export function validateRequestBody(schema: ZodSchema) {
 
     if (!result.success) {
       const { fieldErrors } = result.error.flatten();
-      throw new BadRequestError('Campos inválidos', fieldErrors);
+      throw new BadRequestError('Invalid fields', fieldErrors);
     }
 
     next();
