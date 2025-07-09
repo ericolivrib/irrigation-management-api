@@ -1,5 +1,5 @@
 import express from 'express';
-import { authRouter } from '../domain/users/auth.routes';
+import { authRouter } from '../domain/auth/auth.routes';
 import { pivotRouter } from '../domain/pivots/pivot.routes';
 import { irrigationRouter } from '../domain/irrigations/irrigation.router';
 
