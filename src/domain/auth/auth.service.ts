@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { User } from "../../models/user.model";
+import { User } from "../../common/models/user.model";
 import { RegisterUserRequestBody } from "./dtos/register-user-request-body.dto";
 import { RegisterUserResponseBody } from "./dtos/register-user-response-body.dto";
 import { genSalt, hash } from "bcryptjs";

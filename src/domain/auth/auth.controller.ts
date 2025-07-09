@@ -6,10 +6,11 @@ import { authService } from './auth.service';
 
 export const authController = {
   registerUser: async (
-    req: Request<object, any, RegisterUserRequestBody, object, object>,
+    req: Request<object, any, RegisterUserRequestBody>,
     res: Response<ApiResponse<RegisterUserResponseBody, 'user'>>
   ): Promise<void> => {
     const user = req.body;
+
     const registeredUser = await authService.registerUser(user);
 
     res.status(201).json({
