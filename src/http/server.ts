@@ -1,18 +1,17 @@
 import express from 'express';
 import { SERVER_PORT, SERVER_URL } from '../env/server.env';
-import { router } from '../routes';
+import { router } from '../router';
 
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.use(router);
 
-app.listen(SERVER_PORT, (error: Error) => {
-  if (error) {
-    console.error(`Error starting server: ${error.message}`);
-    return;
-  }
+const server = app.listen(SERVER_PORT, () => {
   console.info(`Server is running at ${SERVER_URL}`);
+});
+
+server.on('error', (error) => {
+  console.error(`Error starting server: ${error.message}`);
 });
