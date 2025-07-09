@@ -19,4 +19,9 @@ export const pivotService = {
 
     return pivot;
   },
+
+  getUserPivots: async (userId: UUID): Promise<Pivot[]> => {
+    const userPivots = pivots.filter(pivot => pivot.userId === userId);
+    return userPivots;
+  }
 };

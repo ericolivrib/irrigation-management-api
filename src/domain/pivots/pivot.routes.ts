@@ -7,7 +7,11 @@ import { verifyJwt } from '../../middlewares/verify-jwt.middleware';
 
 const pivotRouter = express.Router();
 
-// pivotRouter.get('/');
+pivotRouter.get(
+  '/',
+  verifyJwt,
+  handleAsync(pivotController.getUserPivots)
+);
 // pivotRouter.get('/:id');
 pivotRouter.post(
   '/',
