@@ -5,6 +5,7 @@ import { Irrigation } from "../../common/models/irrigation.model";
 import { getRequestUserId } from "../../helpers/get-request-user-id.helper";
 
 import * as irrigationService from './irrigation.service';
+import { UUID } from "node:crypto";
 
 export async function createIrrigation(
   req: Request<object, any, IrrigationRequest>,
@@ -36,6 +37,19 @@ export async function getAllUserIrrigations(
   });
 }
 
-export async function getIrrigationById(): Promise<void> {}
+export async function getIrrigationById(
+  req: Request<{ id: UUID }>,
+  res: Response<ApiResponse<Irrigation, 'irrigation'>>
+): Promise<void> {
+  const userId = getRequestUserId(req);
+  const irrigationId = req.params['id'];
 
-export async function deleteIrrigation(): Promise<void> {}
+  const irrigation = await irrigationService.getUserIrrigationById(irrigationId, userId);
+
+  res.status(200).json({
+    message: 'Irrigation successful retrieved',
+    irrigation
+  });
+}
+
+export async function deleteIrrigation(): Promise<void> { }

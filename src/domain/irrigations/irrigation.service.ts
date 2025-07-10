@@ -3,6 +3,7 @@ import { Irrigation } from "../../common/models/irrigation.model";
 import { IrrigationRequest } from "./dtos/irrigation-request.dto";
 
 import * as pivotService from '../pivots/pivot.service';
+import { NotFoundError } from "../../common/errors/not-found.error";
 
 const irrigations: Map<UUID, Irrigation> = new Map();
 
@@ -24,5 +25,15 @@ export async function createIrrigation(newIrrigation: IrrigationRequest, userId:
 export async function getAllUserIrrigations(userId: UUID): Promise<Irrigation[]> {
   const userIrrigations = Array.from(irrigations.values()).filter(value => value.userId === userId);
   return userIrrigations;
+}
+
+export async function getUserIrrigationById(irrigationId: UUID, userId: UUID): Promise<Irrigation> {
+  const irrigation = irrigations.get(irrigationId);
+
+  if (!irrigation || irrigation.userId !== userId) {
+    throw new NotFoundError('Irrigation not found');
+  }
+
+  return irrigation;
 }
 

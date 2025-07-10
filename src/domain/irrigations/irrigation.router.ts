@@ -14,7 +14,11 @@ irrigationRouter.get(
   handleAsync(irrigationController.getAllUserIrrigations)
 );
 
-// irrigationRouter.get('/:id');
+irrigationRouter.get(
+  '/:id',
+  verifyJwt,
+  handleAsync(irrigationController.getIrrigationById)
+);
 
 irrigationRouter.post(
   '/',
