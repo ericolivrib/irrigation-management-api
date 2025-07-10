@@ -14,15 +14,15 @@ export async function createIrrigation(
   const newIrrigation = req.body;
   const userId = getRequestUserId(req);
 
-  const createdIrrigation = await irrigationService.createIrrigation(newIrrigation, userId);
+  const createdIrrigation = await irrigationService.createIrrigation(userId, newIrrigation);
 
   res.status(201).json({
-    message: 'Irrigation successful created',
+    message: 'Irrigation successfully created',
     irrigation: createdIrrigation
   })
 }
 
-export async function getAllUserIrrigations(
+export async function getUserIrrigations(
   req: Request,
   res: Response<ApiResponse<Irrigation[], 'irrigations'>>
 ): Promise<void> {
@@ -31,8 +31,8 @@ export async function getAllUserIrrigations(
 
   res.status(200).json({
     message: userIrrigations.length == 0
-      ? 'User does not have registered irrigations'
-      : 'User irrigations successful retrieved',
+      ? 'User don\' have any registered irrigations'
+      : 'User registered irrigations successfully retrieved',
     irrigations: userIrrigations
   });
 }
@@ -44,10 +44,10 @@ export async function getIrrigationById(
   const userId = getRequestUserId(req);
   const irrigationId = req.params['id'];
 
-  const irrigation = await irrigationService.getUserIrrigationById(irrigationId, userId);
+  const irrigation = await irrigationService.getUserIrrigationById(userId, irrigationId);
 
   res.status(200).json({
-    message: 'Irrigation successful retrieved',
+    message: 'Irrigation register successfully retrieved',
     irrigation
   });
 }
@@ -59,10 +59,10 @@ export async function deleteIrrigation(
   const userId = getRequestUserId(req);
   const irrigationId = req.params['id'];
 
-  const deletedIrrigation = await irrigationService.deleteIrrigation(irrigationId, userId);
+  const deletedIrrigation = await irrigationService.deleteIrrigation(userId, irrigationId);
 
   res.status(200).json({
-    message: 'Irrigation successful deleted',
+    message: 'Irrigation register successfully deleted',
     deletedIrrigation
   });
 }

@@ -11,7 +11,7 @@ const irrigationRouter = express.Router();
 irrigationRouter.get(
   '/',
   verifyJwt,
-  handleAsync(irrigationController.getAllUserIrrigations)
+  handleAsync(irrigationController.getUserIrrigations)
 );
 
 irrigationRouter.get(

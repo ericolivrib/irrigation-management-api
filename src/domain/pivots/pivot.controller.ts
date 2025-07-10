@@ -10,10 +10,10 @@ export async function createPivot(
   req: Request<object, any, PivotRequest>,
   res: Response<ApiResponse<Pivot, 'pivot'>>
 ) {
-  const requestBody = req.body;
+  const newPivot = req.body;
   const userId = getRequestUserId(req);
 
-  const createdPivot = await pivotService.createPivot(requestBody, userId);
+  const createdPivot = await pivotService.createPivot(userId, newPivot);
 
   res.status(201).json({
     message: 'Pivot created successfuly',
@@ -30,7 +30,9 @@ export async function getUserPivots(
 
   res.status(200).send({
     // TODO: Adjust return message
-    message: 'Pivots successful retrieved',
+    message: pivots.length > 0
+      ? 'User don\'t have any pivots'
+      : 'User pivots successfully retreved',
     pivots
   })
 }
@@ -42,10 +44,10 @@ export async function getPivotById(
   const userId = getRequestUserId(req);
   const pivotId = req.params.id;
 
-  const pivot = await pivotService.getPivotById(pivotId, userId);
+  const pivot = await pivotService.getPivotById(userId, pivotId);
 
   res.status(200).send({
-    message: 'Pivot successful retrieved',
+    message: 'Pivot successfully retrieved',
     pivot
   })
 }
@@ -54,14 +56,14 @@ export async function updatePivot(
   req: Request<{ id: UUID }, any, PivotRequest>,
   res: Response<ApiResponse<Pivot, 'pivot'>>
 ): Promise<void> {
-  const requestPivot = req.body;
+  const updatedPivotData = req.body;
   const userId = getRequestUserId(req);
   const pivotId = req.params.id;
 
-  const updatedPivot = await pivotService.updatePivot(requestPivot, pivotId, userId);
+  const updatedPivot = await pivotService.updatePivot(userId, pivotId, updatedPivotData);
 
   res.status(200).json({
-    message: 'Pivot successful updated',
+    message: 'Pivot successfully updated',
     pivot: updatedPivot
   });
 }
@@ -73,10 +75,10 @@ export async function deletePivot(
   const userId = getRequestUserId(req);
   const pivotId = req.params.id;
 
-  const deletedPivot = await pivotService.deletePivot(pivotId, userId);
+  const deletedPivot = await pivotService.deletePivot(userId, pivotId);
 
   res.status(200).json({
-    message: 'Pivot successful deleted',
+    message: 'Pivot successfully deleted',
     deletedPivot
   });
 }

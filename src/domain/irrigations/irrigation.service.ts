@@ -8,7 +8,7 @@ import { InternalServerError } from "../../common/errors/internal-server.error";
 
 const irrigations: Map<UUID, Irrigation> = new Map();
 
-export async function createIrrigation(newIrrigation: IrrigationRequest, userId: UUID): Promise<Irrigation> {
+export async function createIrrigation(userId: UUID, newIrrigation: IrrigationRequest): Promise<Irrigation> {
   const pivot = await pivotService.getPivotById(newIrrigation.pivotId as UUID, userId);
 
   const irrigation: Irrigation = {
@@ -28,7 +28,7 @@ export async function getAllUserIrrigations(userId: UUID): Promise<Irrigation[]>
   return userIrrigations;
 }
 
-export async function getUserIrrigationById(irrigationId: UUID, userId: UUID): Promise<Irrigation> {
+export async function getUserIrrigationById(userId: UUID, irrigationId: UUID): Promise<Irrigation> {
   const irrigation = irrigations.get(irrigationId);
 
   if (!irrigation || irrigation.userId !== userId) {
@@ -38,7 +38,7 @@ export async function getUserIrrigationById(irrigationId: UUID, userId: UUID): P
   return irrigation;
 }
 
-export async function deleteIrrigation(irrigationId: UUID, userId: UUID): Promise<Irrigation> {
+export async function deleteIrrigation(userId: UUID, irrigationId: UUID): Promise<Irrigation> {
   const irrigation = await getUserIrrigationById(irrigationId, userId);
   
   irrigations.delete(irrigation.id);

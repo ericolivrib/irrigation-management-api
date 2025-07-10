@@ -10,12 +10,12 @@ export async function registerUser(
   req: Request<object, any, RegisterUserRequest>,
   res: Response<ApiResponse<RegisterUserResponse, 'user'>>
 ): Promise<void> {
-  const user = req.body;
+  const newUser = req.body;
 
-  const registeredUser = await authService.registerUser(user);
+  const registeredUser = await authService.registerUser(newUser);
 
   res.status(201).json({
-    message: 'User registered successfully',
+    message: 'User successfully registered',
     user: registeredUser
   });
 }
@@ -29,7 +29,7 @@ export async function login(
   const generatedToken = await authService.login(username, password);
 
   res.status(200).json({
-    message: 'Login successful',
+    message: 'Login successfully',
     jwt: generatedToken
   });
 }
