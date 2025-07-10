@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { verifyJwt } from '../../middlewares/verify-jwt.middleware';
-import { validateRequestBody } from '../../common/helpers/validate-request-body.helper';
+import { withValidationHandler } from '../../handlers/with-validation-handler';
 import { irrigationRequestSchema } from './schemas/irrigation-request.schema';
-import { handleAsync } from '../../common/helpers/async-handler.helper';
+import { withErrorHandler } from '../../handlers/with-error-handler';
 
 import * as irrigationController from './irrigation.controller';
 
@@ -12,26 +12,26 @@ export function createIrrigationRouter(): Router {
   router.get(
     '/',
     verifyJwt,
-    handleAsync(irrigationController.getUserIrrigations)
+    withErrorHandler(irrigationController.getUserIrrigations)
   );
   
   router.get(
     '/:id',
     verifyJwt,
-    handleAsync(irrigationController.getIrrigationById)
+    withErrorHandler(irrigationController.getIrrigationById)
   );
   
   router.post(
     '/',
     verifyJwt,
-    validateRequestBody(irrigationRequestSchema),
-    handleAsync(irrigationController.createIrrigation)
+    withValidationHandler(irrigationRequestSchema),
+    withErrorHandler(irrigationController.createIrrigation)
   );
   
   router.delete(
     '/:id',
     verifyJwt,
-    handleAsync(irrigationController.deleteIrrigation)
+    withErrorHandler(irrigationController.deleteIrrigation)
   );
   
   return router;

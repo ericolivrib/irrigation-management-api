@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
-import { validateRequestBody } from '../../common/helpers/validate-request-body.helper';
+import { withValidationHandler } from '../../handlers/with-validation-handler';
 import { pivotRequestSchema } from './schemas/pivot-request.schema';
-import { handleAsync } from '../../common/helpers/async-handler.helper';
+import { withErrorHandler } from '../../handlers/with-error-handler';
 import * as pivotController from './pivot.controller';
 import { verifyJwt } from '../../middlewares/verify-jwt.middleware';
 
@@ -11,33 +11,33 @@ export function createPivotRouter(): Router {
   router.get(
     '/',
     verifyJwt,
-    handleAsync(pivotController.getUserPivots)
+    withErrorHandler(pivotController.getUserPivots)
   );
   
   router.get(
     '/:id',
     verifyJwt,
-    handleAsync(pivotController.getPivotById)
+    withErrorHandler(pivotController.getPivotById)
   );
   
   router.post(
     '/',
     verifyJwt,
-    validateRequestBody(pivotRequestSchema),
-    handleAsync(pivotController.createPivot)
+    withValidationHandler(pivotRequestSchema),
+    withErrorHandler(pivotController.createPivot)
   );
   
   router.put(
     '/:id',
     verifyJwt,
-    validateRequestBody(pivotRequestSchema),
-    handleAsync(pivotController.updatePivot)
+    withValidationHandler(pivotRequestSchema),
+    withErrorHandler(pivotController.updatePivot)
   );
   
   router.delete(
     '/:id',
     verifyJwt,
-    handleAsync(pivotController.deletePivot)
+    withErrorHandler(pivotController.deletePivot)
   );
   
   return router;
