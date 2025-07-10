@@ -3,7 +3,6 @@ import { CreatePivotRequest } from './dtos/create-pivot-request.dto';
 import { ApiResponse } from '../../types/api-response';
 import { pivotService } from './pivot.service';
 import { CreatePivotResponse } from './dtos/create-pivot-response.dto';
-import { JwtPayload } from '../../types/jwt-payload';
 import { Pivot } from '../../common/models/pivot.model';
 import { getRequestUserId } from '../../helpers/get-request-user-id.helper';
 import { UUID } from 'node:crypto';
@@ -14,7 +13,7 @@ export const pivotController = {
     res: Response<ApiResponse<CreatePivotResponse, 'pivot'>>
   ) => {
     const requestBody = req.body;
-    const { sub: userId }: JwtPayload = req['user'];
+    const userId = getRequestUserId(req);
 
     const createdPivot = await pivotService.createPivot(requestBody, userId);
 

@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import { UUID } from "crypto";
-import { JwtPayload } from '../types/jwt-payload';
+import { User } from '../common/models/user.model';
 
-export function getRequestUserId(req: Request): UUID {
-  return (<JwtPayload>req['user']).sub;
+export function getRequestUserId(req: Request<object, any, any, object, Record<string, any>>): UUID {
+  return (<User>req['user']).id;
 }

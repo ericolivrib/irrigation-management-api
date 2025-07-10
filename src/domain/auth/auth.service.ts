@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+import { randomUUID, UUID } from "node:crypto";
 import { User } from "../../common/models/user.model";
 import { RegisterUserRequestBody } from "./dtos/register-user-request-body.dto";
 import { RegisterUserResponseBody } from "./dtos/register-user-response-body.dto";
@@ -68,5 +68,15 @@ export const authService = {
       token,
       expiresIn: new Date(Date.now() + expiresIn * 1000)
     }
+  },
+
+  getUserById: async (userId: UUID): Promise<User> => {
+    const user = users.find(u => u.id === userId);
+
+    if (!user) {
+      throw new UnauthorizedError('Unauthorized');
+    }
+
+    return { password: undefined, ...user };
   }
 }
