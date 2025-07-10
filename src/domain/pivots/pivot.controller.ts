@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { CreatePivotRequest } from './dtos/create-pivot-request.dto';
 import { ApiResponse } from '../../types/api-response';
-import { pivotService } from './pivot.service';
+import * as pivotService from './pivot.service';
 import { CreatePivotResponse } from './dtos/create-pivot-response.dto';
 import { Pivot } from '../../common/models/pivot.model';
 import { getRequestUserId } from '../../helpers/get-request-user-id.helper';
