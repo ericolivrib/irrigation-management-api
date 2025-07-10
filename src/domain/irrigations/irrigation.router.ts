@@ -1,8 +1,8 @@
 import express from 'express';
 import { verifyJwt } from '../../middlewares/verify-jwt.middleware';
-import { validateRequestBody } from '../../common/helpers/validation.handler';
+import { validateRequestBody } from '../../common/helpers/validate-request-body.helper';
 import { irrigationRequestSchema } from './schemas/irrigation-request.schema';
-import { handleAsync } from '../../common/helpers/async.handler';
+import { handleAsync } from '../../common/helpers/async-handler.helper';
 
 import * as irrigationController from './irrigation.controller';
 
