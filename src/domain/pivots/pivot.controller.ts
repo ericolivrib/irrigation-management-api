@@ -3,7 +3,7 @@ import { PivotRequest } from './dtos/pivot-request.dto';
 import { ApiResponse } from '../../types/api-response';
 import * as pivotService from './pivot.service';
 import { Pivot } from '../../common/models/pivot.model';
-import { getRequestUserId } from '../../helpers/get-request-user-id.helper';
+import { getRequestUserId } from '../../common/helpers/get-request-user-id.helper';
 import { UUID } from 'node:crypto';
 
 export async function createPivot(

@@ -1,7 +1,7 @@
 import express from 'express';
-import { validateRequestBody } from '../../helpers/validation.handler';
+import { validateRequestBody } from '../../common/helpers/validation.handler';
 import { pivotRequestSchema } from './schemas/pivot-request.schema';
-import { handleAsync } from '../../helpers/async.handler';
+import { handleAsync } from '../../common/helpers/async.handler';
 import * as pivotController from './pivot.controller';
 import { verifyJwt } from '../../middlewares/verify-jwt.middleware';
 
