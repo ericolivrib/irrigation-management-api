@@ -9,7 +9,7 @@ function normalizeError(err: unknown): ErrorResponse {
     return err;
   }
 
-  return new InternalServerError('An unexpected error occurred');
+  return new InternalServerError(err);
 }
 
 export const errorHandler = async (
