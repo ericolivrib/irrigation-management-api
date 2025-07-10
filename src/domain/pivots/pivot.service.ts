@@ -41,3 +41,15 @@ export async function getPivotById(pivotId: UUID, userId: UUID): Promise<Pivot> 
 
   return pivot;
 }
+
+export async function updatePivot(pivotToUpdate: UpdatePivotRequest, pivotId: UUID, userId: UUID): Promise<Pivot> {
+  const pivot = await getPivotById(pivotId, userId);
+  const pivotIndex = pivots.indexOf(pivot);
+
+  const updatedPivot = pivots[pivotIndex] = {
+    ...pivots[pivotIndex],
+    ...pivotToUpdate,
+  }
+
+  return updatedPivot;
+}

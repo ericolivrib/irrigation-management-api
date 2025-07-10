@@ -6,6 +6,7 @@ import { CreatePivotResponse } from './dtos/create-pivot-response.dto';
 import { Pivot } from '../../common/models/pivot.model';
 import { getRequestUserId } from '../../helpers/get-request-user-id.helper';
 import { UUID } from 'node:crypto';
+import { UpdatePivotRequest } from './dtos/update-pivot-request.dto';
 
 export const pivotController = {
   createPivot: async (
@@ -50,5 +51,21 @@ export const pivotController = {
       message: 'Pivot successful retrieved',
       pivot
     })
+  },
+
+  updatePivot: async (
+    req: Request<{ id: UUID }, any, UpdatePivotRequest>,
+    res: Response<ApiResponse<Pivot, 'pivot'>>
+  ): Promise<void> => {
+    const requestPivot = req.body;
+    const userId = getRequestUserId(req);
+    const pivotId = req.params.id;
+
+    const updatedPivot = await pivotService.updatePivot(requestPivot, pivotId, userId);
+
+    res.status(200).json({
+      message: 'Pivot successful updated',
+      pivot: updatedPivot
+    });
   }
 }
