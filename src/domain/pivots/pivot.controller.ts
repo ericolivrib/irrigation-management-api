@@ -67,5 +67,20 @@ export const pivotController = {
       message: 'Pivot successful updated',
       pivot: updatedPivot
     });
+  },
+
+  deletePivot: async (
+    req: Request<{ id: UUID }>,
+    res: Response<ApiResponse<Pivot, 'deletedPivot'>>
+  ): Promise<void> => {
+    const userId = getRequestUserId(req);
+    const pivotId = req.params.id;
+
+    const deletedPivot = await pivotService.deletePivot(pivotId, userId);
+
+    res.status(200).json({
+      message: 'Pivot successful deleted',
+      deletedPivot
+    });
   }
 }

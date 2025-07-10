@@ -34,6 +34,10 @@ pivotRouter.put(
   handleAsync(pivotController.updatePivot)
 );
 
-// pivotRouter.delete('/:id');
+pivotRouter.delete(
+  '/:id',
+  verifyJwt,
+  handleAsync(pivotController.deletePivot)
+);
 
 export { pivotRouter };

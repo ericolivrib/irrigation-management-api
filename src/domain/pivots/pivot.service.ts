@@ -53,3 +53,10 @@ export async function updatePivot(pivotToUpdate: UpdatePivotRequest, pivotId: UU
 
   return updatedPivot;
 }
+
+export async function deletePivot(pivotId: UUID, userId: UUID): Promise<Pivot> {
+  const pivot = await getPivotById(pivotId, userId);
+  const [deletedPivot] = pivots.splice(pivots.indexOf(pivot), 1);
+
+  return deletedPivot;
+}
