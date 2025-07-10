@@ -13,70 +13,70 @@ import { JWT_EXPIRES_IN, JWT_SECRET } from "../../env/jwt.env";
 const users: User[] = [];
 const SALT_ROUNDS = 10;
 
-export const authService = {
-  registerUser: async (newUser: RegisterUserRequestBody): Promise<RegisterUserResponseBody> => {
-    const userAlreadyExists = users.some(user => user.username === newUser.username);
 
-    if (userAlreadyExists) {
-      throw new ConflictError("User already exists");
-    }
+export async function registerUser(newUser: RegisterUserRequestBody): Promise<RegisterUserResponseBody> {
+  const userAlreadyExists = users.some(user => user.username === newUser.username);
 
-    const salt = await bcrypt.genSalt(SALT_ROUNDS);
-    const hashedPassword = await bcrypt.hash(newUser.password, salt);
+  if (userAlreadyExists) {
+    throw new ConflictError("User already exists");
+  }
 
-    const user: User = {
-      id: randomUUID(),
-      username: newUser.username,
-      password: hashedPassword,
-    };
+  const salt = await bcrypt.genSalt(SALT_ROUNDS);
+  const hashedPassword = await bcrypt.hash(newUser.password, salt);
 
-    users.push(user);
+  const user: User = {
+    id: randomUUID(),
+    username: newUser.username,
+    password: hashedPassword,
+  };
 
-    return {
-      id: user.id,
-      username: user.username
-    };
-  },
+  users.push(user);
 
-  login: async (username: string, password: string): Promise<LoginResponseBody> => {
-    const existentUser = users.find(user => user.username === username);
+  return {
+    id: user.id,
+    username: user.username
+  };
+}
 
-    if (!existentUser) {
-      throw new UnauthorizedError("Invalid username or password");
-    }
+export async function login(username: string, password: string): Promise<LoginResponseBody> {
+  const existentUser = users.find(user => user.username === username);
 
-    const verifyPassword = await bcrypt.compare(password, existentUser.password);
+  if (!existentUser) {
+    throw new UnauthorizedError("Invalid username or password");
+  }
 
-    if (!verifyPassword) {
-      throw new UnauthorizedError("Invalid username or password");
-    }
+  const verifyPassword = await bcrypt.compare(password, existentUser.password);
 
-    const payload = {
-      iss: 'Irrigation Management API',
-      sub: existentUser.id,
-      jti: randomUUID(),
-    };
+  if (!verifyPassword) {
+    throw new UnauthorizedError("Invalid username or password");
+  }
 
-    const expiresIn = JWT_EXPIRES_IN;
+  const payload = {
+    iss: 'Irrigation Management API',
+    sub: existentUser.id,
+    jti: randomUUID(),
+  };
 
-    const token = jwt.sign(payload, JWT_SECRET, {
-      expiresIn,
-      algorithm: 'HS256'
-    });
+  const expiresIn = JWT_EXPIRES_IN;
 
-    return {
-      token,
-      expiresIn: new Date(Date.now() + expiresIn * 1000)
-    }
-  },
+  const token = jwt.sign(payload, JWT_SECRET, {
+    expiresIn,
+    algorithm: 'HS256'
+  });
 
-  getUserById: async (userId: UUID): Promise<User> => {
-    const user = users.find(u => u.id === userId);
-
-    if (!user) {
-      throw new UnauthorizedError('Unauthorized');
-    }
-
-    return { password: undefined, ...user };
+  return {
+    token,
+    expiresIn: new Date(Date.now() + expiresIn * 1000)
   }
 }
+
+export async function getUserById(userId: UUID): Promise<User> {
+  const user = users.find(u => u.id === userId);
+
+  if (!user) {
+    throw new UnauthorizedError('Unauthorized');
+  }
+
+  return { password: undefined, ...user };
+}
+

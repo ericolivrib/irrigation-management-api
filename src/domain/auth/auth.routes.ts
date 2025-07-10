@@ -1,5 +1,5 @@
 import express from 'express';
-import { authController } from './auth.controller';
+import * as authController from './auth.controller';
 import { handleAsync } from '../../helpers/async.handler';
 import { validateRequestBody } from '../../helpers/validation.handler';
 import { registerUserSchema } from './schemas/register-user.schema';
