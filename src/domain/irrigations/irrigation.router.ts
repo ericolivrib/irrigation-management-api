@@ -27,6 +27,10 @@ irrigationRouter.post(
   handleAsync(irrigationController.createIrrigation)
 );
 
-// irrigationRouter.delete('/:id');
+irrigationRouter.delete(
+  '/:id',
+  verifyJwt,
+  handleAsync(irrigationController.deleteIrrigation)
+);
 
 export { irrigationRouter };

@@ -52,4 +52,17 @@ export async function getIrrigationById(
   });
 }
 
-export async function deleteIrrigation(): Promise<void> { }
+export async function deleteIrrigation(
+  req: Request<{ id: UUID }>,
+  res: Response<ApiResponse<Irrigation, 'deletedIrrigation'>>
+): Promise<void> {
+  const userId = getRequestUserId(req);
+  const irrigationId = req.params['id'];
+
+  const deletedIrrigation = await irrigationService.deleteIrrigation(irrigationId, userId);
+
+  res.status(200).json({
+    message: 'Irrigation successful deleted',
+    deletedIrrigation
+  });
+}

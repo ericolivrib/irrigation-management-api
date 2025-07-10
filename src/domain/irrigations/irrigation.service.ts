@@ -4,6 +4,7 @@ import { IrrigationRequest } from "./dtos/irrigation-request.dto";
 
 import * as pivotService from '../pivots/pivot.service';
 import { NotFoundError } from "../../common/errors/not-found.error";
+import { InternalServerError } from "../../common/errors/internal-server.error";
 
 const irrigations: Map<UUID, Irrigation> = new Map();
 
@@ -34,6 +35,13 @@ export async function getUserIrrigationById(irrigationId: UUID, userId: UUID): P
     throw new NotFoundError('Irrigation not found');
   }
 
+  return irrigation;
+}
+
+export async function deleteIrrigation(irrigationId: UUID, userId: UUID): Promise<Irrigation> {
+  const irrigation = await getUserIrrigationById(irrigationId, userId);
+  
+  irrigations.delete(irrigation.id);
   return irrigation;
 }
 
