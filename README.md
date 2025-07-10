@@ -7,8 +7,7 @@
   
   
 <h2>🧐 Funcionalidades</h2>
-
-<p>Abaixo algumas das principais funcionalidades da API:
+Abaixo algumas das principais funcionalidades da API:
 
 *   Registro e autenticação de usuários com token JWT e codificação de senhas com BCrypt
 *   Validação de dados de requisição com Zod
@@ -33,7 +32,6 @@ http://localhost:3000/swagger-ui.html
   
   
 <h2>💻 Tecnologias</h2>
-
 Tecnologias utilizadas para a construção deste projeto:
 
 *   Node.js
