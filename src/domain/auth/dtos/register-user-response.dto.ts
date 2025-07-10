@@ -1,6 +1,6 @@
 import { UUID } from "node:crypto";
 
-export interface RegisterUserResponseBody {
+export interface RegisterUserResponse {
   id: UUID;
   username: string;
 }

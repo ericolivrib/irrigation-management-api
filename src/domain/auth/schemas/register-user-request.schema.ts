@@ -1,6 +1,6 @@
 import z from "zod";
 
-export const registerUserSchema = z.object({
+export const registerUserRequestSchema = z.object({
   username: z
     .string({ required_error: 'User name is required' })
     .min(5, 'User name must have 5 or mode characters')

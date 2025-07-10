@@ -1,16 +1,14 @@
 import { Request, Response } from 'express';
-import { CreatePivotRequest } from './dtos/create-pivot-request.dto';
+import { PivotRequest } from './dtos/pivot-request.dto';
 import { ApiResponse } from '../../types/api-response';
 import * as pivotService from './pivot.service';
-import { CreatePivotResponse } from './dtos/create-pivot-response.dto';
 import { Pivot } from '../../common/models/pivot.model';
 import { getRequestUserId } from '../../helpers/get-request-user-id.helper';
 import { UUID } from 'node:crypto';
-import { UpdatePivotRequest } from './dtos/update-pivot-request.dto';
 
 export async function createPivot(
-  req: Request<object, any, CreatePivotRequest>,
-  res: Response<ApiResponse<CreatePivotResponse, 'pivot'>>
+  req: Request<object, any, PivotRequest>,
+  res: Response<ApiResponse<Pivot, 'pivot'>>
 ) {
   const requestBody = req.body;
   const userId = getRequestUserId(req);
@@ -53,7 +51,7 @@ export async function getPivotById(
 }
 
 export async function updatePivot(
-  req: Request<{ id: UUID }, any, UpdatePivotRequest>,
+  req: Request<{ id: UUID }, any, PivotRequest>,
   res: Response<ApiResponse<Pivot, 'pivot'>>
 ): Promise<void> {
   const requestPivot = req.body;

@@ -1,6 +1,6 @@
 import z from "zod";
 
-export const createPivotRequestSchema = z.object({
+export const pivotRequestSchema = z.object({
   description: z
     .string({ required_error: 'Description is required' })
     .min(5, 'Description must have 5 or more characters')

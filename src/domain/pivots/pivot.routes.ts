@@ -1,10 +1,9 @@
 import express from 'express';
 import { validateRequestBody } from '../../helpers/validation.handler';
-import { createPivotRequestSchema } from './schemas/create-pivot-request.schema';
+import { pivotRequestSchema } from './schemas/pivot-request.schema';
 import { handleAsync } from '../../helpers/async.handler';
 import * as pivotController from './pivot.controller';
 import { verifyJwt } from '../../middlewares/verify-jwt.middleware';
-import { updatePivotRequestSchema } from './schemas/update-pivot-request.schema';
 
 const pivotRouter = express.Router();
 
@@ -23,14 +22,14 @@ pivotRouter.get(
 pivotRouter.post(
   '/',
   verifyJwt,
-  validateRequestBody(createPivotRequestSchema),
+  validateRequestBody(pivotRequestSchema),
   handleAsync(pivotController.createPivot)
 );
 
 pivotRouter.put(
   '/:id',
   verifyJwt,
-  validateRequestBody(updatePivotRequestSchema),
+  validateRequestBody(pivotRequestSchema),
   handleAsync(pivotController.updatePivot)
 );
 

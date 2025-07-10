@@ -2,20 +2,20 @@ import express from 'express';
 import * as authController from './auth.controller';
 import { handleAsync } from '../../helpers/async.handler';
 import { validateRequestBody } from '../../helpers/validation.handler';
-import { registerUserSchema } from './schemas/register-user.schema';
-import { loginSchema } from './schemas/login.schema';
+import { registerUserRequestSchema } from './schemas/register-user-request.schema';
+import { loginRequestSchema } from './schemas/login-request.schema';
 
 const authRouter = express.Router();
 
 authRouter.post(
   '/register',
-  validateRequestBody(registerUserSchema),
+  validateRequestBody(registerUserRequestSchema),
   handleAsync(authController.registerUser)
 );
 
 authRouter.post(
   '/login',
-  validateRequestBody(loginSchema),
+  validateRequestBody(loginRequestSchema),
   handleAsync(authController.login)
 );
 

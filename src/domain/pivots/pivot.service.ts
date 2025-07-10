@@ -1,15 +1,12 @@
 import { randomUUID, UUID } from "node:crypto";
 import { Pivot } from "../../common/models/pivot.model";
-import { CreatePivotRequest } from "./dtos/create-pivot-request.dto";
-import { CreatePivotResponse } from "./dtos/create-pivot-response.dto";
+import { PivotRequest } from "./dtos/pivot-request.dto";
 import { NotFoundError } from "../../common/errors/not-found.error";
 import { ForbiddenError } from "../../common/errors/forbidden.error";
-import { UpdatePivotRequest } from "./dtos/update-pivot-request.dto";
 
 const pivots: Pivot[] = [];
 
-// export const pivotService: IPivotService = {
-export async function createPivot(newPivot: CreatePivotRequest, userId: UUID): Promise<CreatePivotResponse> {
+export async function createPivot(newPivot: PivotRequest, userId: UUID): Promise<Pivot> {
   const pivot = {
     id: randomUUID(),
     description: newPivot.description,
@@ -42,16 +39,16 @@ export async function getPivotById(pivotId: UUID, userId: UUID): Promise<Pivot> 
   return pivot;
 }
 
-export async function updatePivot(pivotToUpdate: UpdatePivotRequest, pivotId: UUID, userId: UUID): Promise<Pivot> {
+export async function updatePivot(pivotToUpdate: PivotRequest, pivotId: UUID, userId: UUID): Promise<Pivot> {
   const pivot = await getPivotById(pivotId, userId);
   const pivotIndex = pivots.indexOf(pivot);
 
-  const updatedPivot = pivots[pivotIndex] = {
+  pivots[pivotIndex] = {
     ...pivots[pivotIndex],
     ...pivotToUpdate,
   }
 
-  return updatedPivot;
+  return pivots[pivotIndex];
 }
 
 export async function deletePivot(pivotId: UUID, userId: UUID): Promise<Pivot> {

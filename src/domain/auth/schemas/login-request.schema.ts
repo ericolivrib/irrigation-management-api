@@ -1,6 +1,6 @@
 import z from "zod";
 
-export const loginSchema = z.object({
+export const loginRequestSchema = z.object({
   username: z
     .string({ required_error: 'User name is required' })
     .trim(),

@@ -1,9 +1,9 @@
 import { randomUUID, UUID } from "node:crypto";
 import { User } from "../../common/models/user.model";
-import { RegisterUserRequestBody } from "./dtos/register-user-request-body.dto";
-import { RegisterUserResponseBody } from "./dtos/register-user-response-body.dto";
+import { RegisterUserRequest } from "./dtos/register-user-request.dto";
+import { RegisterUserResponse } from "./dtos/register-user-response.dto";
 import { ConflictError } from "../../common/errors/conflict.error";
-import { LoginResponseBody } from "./dtos/login-response-body.dto";
+import { LoginResponse } from "./dtos/login-response.dto";
 import { UnauthorizedError } from "../../common/errors/unauthorized.error";
 
 import * as jwt from "jsonwebtoken";
@@ -14,7 +14,7 @@ const users: User[] = [];
 const SALT_ROUNDS = 10;
 
 
-export async function registerUser(newUser: RegisterUserRequestBody): Promise<RegisterUserResponseBody> {
+export async function registerUser(newUser: RegisterUserRequest): Promise<RegisterUserResponse> {
   const userAlreadyExists = users.some(user => user.username === newUser.username);
 
   if (userAlreadyExists) {
@@ -38,7 +38,7 @@ export async function registerUser(newUser: RegisterUserRequestBody): Promise<Re
   };
 }
 
-export async function login(username: string, password: string): Promise<LoginResponseBody> {
+export async function login(username: string, password: string): Promise<LoginResponse> {
   const existentUser = users.find(user => user.username === username);
 
   if (!existentUser) {

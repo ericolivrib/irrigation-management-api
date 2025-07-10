@@ -1,4 +1,4 @@
-export interface LoginResponseBody {
+export interface LoginResponse {
   token: string;
   expiresIn?: Date;
 }
