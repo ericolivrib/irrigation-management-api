@@ -1,6 +1,13 @@
 import z from "zod";
 
 export const registerUserSchema = z.object({
-  username: z.string().trim().min(3, "User name must have 3 or more characters").max(50, "User name must have 50 or less characters"),
-  password: z.string().trim().min(8, "Password must have 8 or more characters")
+  username: z
+    .string({ required_error: 'User name is required' })
+    .min(5, 'User name must have 5 or mode characters')
+    .max(40, 'User name must have 40 or less characters')
+    .trim(),
+  password: z
+    .string({ required_error: 'Password is required' })
+    .min(8, "Password must have 8 or more characters")
+    .trim()
 });
