@@ -20,3 +20,9 @@ export async function createIrrigation(newIrrigation: IrrigationRequest, userId:
   irrigations.set(irrigation.id, irrigation);
   return irrigation;
 }
+
+export async function getAllUserIrrigations(userId: UUID): Promise<Irrigation[]> {
+  const userIrrigations = Array.from(irrigations.values()).filter(value => value.userId === userId);
+  return userIrrigations;
+}
+

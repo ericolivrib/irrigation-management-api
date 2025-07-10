@@ -21,7 +21,20 @@ export async function createIrrigation(
   })
 }
 
-export async function getUserIrrigations(): Promise<void> {}
+export async function getAllUserIrrigations(
+  req: Request,
+  res: Response<ApiResponse<Irrigation[], 'irrigations'>>
+): Promise<void> {
+  const userId = getRequestUserId(req);
+  const userIrrigations = await irrigationService.getAllUserIrrigations(userId);
+
+  res.status(200).json({
+    message: userIrrigations.length == 0
+      ? 'User does not have registered irrigations'
+      : 'User irrigations successful retrieved',
+    irrigations: userIrrigations
+  });
+}
 
 export async function getIrrigationById(): Promise<void> {}
 

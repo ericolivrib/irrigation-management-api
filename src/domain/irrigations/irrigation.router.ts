@@ -8,14 +8,21 @@ import * as irrigationController from './irrigation.controller';
 
 const irrigationRouter = express.Router();
 
-// irrigationRouter.get('/');
+irrigationRouter.get(
+  '/',
+  verifyJwt,
+  handleAsync(irrigationController.getAllUserIrrigations)
+);
+
 // irrigationRouter.get('/:id');
+
 irrigationRouter.post(
   '/',
   verifyJwt,
   validateRequestBody(irrigationRequestSchema),
   handleAsync(irrigationController.createIrrigation)
 );
+
 // irrigationRouter.delete('/:id');
 
 export { irrigationRouter };
