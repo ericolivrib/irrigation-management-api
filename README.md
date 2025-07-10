@@ -7,15 +7,13 @@
   
   
 <h2>🧐 Funcionalidades</h2>
-Abaixo algumas das principais funcionalidades da API:
 
 *   Registro e autenticação de usuários com token JWT e codificação de senhas com BCrypt
 *   Validação de dados de requisição com Zod
 *   Manipulação global de erros com retorno de códigos de status HTTP
 *   CRUD de Irrigações e Pivôs de Irrigação
 
-<h2>🛠️ Execução:</h2>
-Passos para a execução do prijeto
+<h2>🛠️ Execução</h2>
 
 <p>1. Rode o comando abaixo:</p>
 
@@ -32,7 +30,6 @@ http://localhost:3000/swagger-ui.html
   
   
 <h2>💻 Tecnologias</h2>
-Tecnologias utilizadas para a construção deste projeto:
 
 *   Node.js
 *   Express.js
