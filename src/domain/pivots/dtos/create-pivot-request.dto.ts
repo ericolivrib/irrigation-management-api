@@ -1,4 +1,4 @@
 import z from "zod";
-import { createPivotRequestSchema } from "../schema/create-pivot-request.schema";
+import { createPivotRequestSchema } from "../schemas/create-pivot-request.schema";
 
 export type CreatePivotRequest = z.infer<typeof createPivotRequestSchema>;
