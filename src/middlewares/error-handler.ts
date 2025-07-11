@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 
 import { ErrorResponse } from "../errors/response.error";
 import { InternalServerError } from "../errors/internal-server.error";
-import { ApiErrorResponse } from "../types/api-error-response";
+import { ApiErrorResponse } from "../schemas/api-error-response.dto";
 
 function normalizeError(err: unknown): ErrorResponse {
   if (err instanceof ErrorResponse) {

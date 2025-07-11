@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { RegisterUserRequest } from '../schemas/register-user-request.dto';
-import { ApiResponse } from '../types/api-response';
+import { ApiResponse } from '../schemas/api-response.dto';
 import { RegisterUserResponse } from '../schemas/register-user-response.dto';
 import { LoginRequest } from '../schemas/login-request.dto';
 import { LoginResponse } from '../schemas/login-response.dto';

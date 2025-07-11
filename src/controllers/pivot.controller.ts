@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { PivotRequest } from '../schemas/pivot-request.dto';
-import { ApiResponse } from '../types/api-response';
+import { ApiResponse } from '../schemas/api-response.dto';
 import * as pivotService from '../services/pivot.service';
 import { Pivot } from '../models/pivot.model';
 import { getRequestUserId } from '../helpers/get-request-user-id.helper';

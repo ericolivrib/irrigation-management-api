@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { IrrigationRequest } from "../schemas/irrigation-request.dto";
-import { ApiResponse } from "../types/api-response";
+import { ApiResponse } from "../schemas/api-response.dto";
 import { Irrigation } from "../models/irrigation.model";
 import { getRequestUserId } from "../helpers/get-request-user-id.helper";
 
