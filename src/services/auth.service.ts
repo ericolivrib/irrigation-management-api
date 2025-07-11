@@ -1,10 +1,10 @@
 import { randomUUID, UUID } from "node:crypto";
-import { User } from "../core/models/user.model";
+import { User } from "../models/user.model";
 import { RegisterUserRequest } from "../schemas/register-user-request.dto";
 import { RegisterUserResponse } from "../schemas/register-user-response.dto";
-import { ConflictError } from "../core/errors/conflict.error";
+import { ConflictError } from "../errors/conflict.error";
 import { LoginResponse } from "../schemas/login-response.dto";
-import { UnauthorizedError } from "../core/errors/unauthorized.error";
+import { UnauthorizedError } from "../errors/unauthorized.error";
 import { JWT_EXPIRES_IN, JWT_SECRET } from "../env/jwt.env";
 
 import * as jwt from "jsonwebtoken";

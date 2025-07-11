@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { PivotRequest } from '../schemas/pivot-request.dto';
 import { ApiResponse } from '../types/api-response';
 import * as pivotService from '../services/pivot.service';
-import { Pivot } from '../core/models/pivot.model';
+import { Pivot } from '../models/pivot.model';
 import { getRequestUserId } from '../helpers/get-request-user-id.helper';
 import { UUID } from 'node:crypto';
 

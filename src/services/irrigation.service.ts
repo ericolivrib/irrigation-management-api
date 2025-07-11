@@ -1,9 +1,9 @@
 import { randomUUID, UUID } from "node:crypto";
-import { Irrigation } from "../core/models/irrigation.model";
+import { Irrigation } from "../models/irrigation.model";
 import { IrrigationRequest } from "../schemas/irrigation-request.dto";
 
 import * as pivotService from '../services/pivot.service';
-import { NotFoundError } from "../core/errors/not-found.error";
+import { NotFoundError } from "../errors/not-found.error";
 
 const irrigations: Map<UUID, Irrigation> = new Map();
 

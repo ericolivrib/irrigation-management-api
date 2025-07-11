@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { IrrigationRequest } from "../schemas/irrigation-request.dto";
 import { ApiResponse } from "../types/api-response";
-import { Irrigation } from "../core/models/irrigation.model";
+import { Irrigation } from "../models/irrigation.model";
 import { getRequestUserId } from "../helpers/get-request-user-id.helper";
 
 import * as irrigationService from '../services/irrigation.service';
