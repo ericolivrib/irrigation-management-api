@@ -1,6 +1,6 @@
 import express from 'express';
-import { createAuthRouter } from './auth.routes';
-import { createPivotRouter } from './pivot.routes';
+import { createAuthRouter } from './auth.router';
+import { createPivotRouter } from './pivot.router';
 import { createIrrigationRouter } from './irrigation.router';
 
 const router = express.Router();
