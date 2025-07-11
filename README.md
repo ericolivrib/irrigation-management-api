@@ -15,18 +15,25 @@
 
 <h2>🛠️ Execução</h2>
 
-<p>1. Rode o comando abaixo:</p>
+<strong>OBS:</strong> Para executar esta aplicação, é necessário ter o [Docker](https://www.docker.com/) instalado.
+
+<p>1. Construa a imagem Docker do diretório raiz:</p>
 
 ```
-npm run dev
+docker build -t irrigation-management-api .
 ```
 
-<p>2. Acesse a URL da documentação da API:</p>
+<p>2. Execute o container Docker da imagem construida:</p>
 
 ```
-http://localhost:3000/swagger-ui.html
+docker run -p 3000:3000 -d irrigation-management-api:latest
 ```
 
+<p>3. A aplicação irá iniciar na URL abaixo:</p>
+
+```
+http://localhost:3000/
+```
   
   
 <h2>💻 Tecnologias</h2>
