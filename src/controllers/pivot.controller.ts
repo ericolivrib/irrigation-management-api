@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { PivotRequest } from './dtos/pivot-request.dto';
-import { ApiResponse } from '../../types/api-response';
-import * as pivotService from './pivot.service';
-import { Pivot } from '../../common/models/pivot.model';
-import { getRequestUserId } from '../../common/helpers/get-request-user-id.helper';
+import { PivotRequest } from '../schemas/pivot-request.dto';
+import { ApiResponse } from '../types/api-response';
+import * as pivotService from '../services/pivot.service';
+import { Pivot } from '../core/models/pivot.model';
+import { getRequestUserId } from '../helpers/get-request-user-id.helper';
 import { UUID } from 'node:crypto';
 
 export async function createPivot(

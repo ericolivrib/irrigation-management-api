@@ -1,7 +1,7 @@
 import express from 'express';
 import { SERVER_PORT, SERVER_URL } from './env/server.env';
-import { router } from './router';
-import { errorHandler } from './handlers/error.handler';
+import { router } from './routers';
+import { errorHandler } from './middlewares/error-handler';
 
 const app = express();
 

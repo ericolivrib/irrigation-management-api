@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { IrrigationRequest } from "./dtos/irrigation-request.dto";
-import { ApiResponse } from "../../types/api-response";
-import { Irrigation } from "../../common/models/irrigation.model";
-import { getRequestUserId } from "../../common/helpers/get-request-user-id.helper";
+import { IrrigationRequest } from "../schemas/irrigation-request.dto";
+import { ApiResponse } from "../types/api-response";
+import { Irrigation } from "../core/models/irrigation.model";
+import { getRequestUserId } from "../helpers/get-request-user-id.helper";
 
-import * as irrigationService from './irrigation.service';
+import * as irrigationService from '../services/irrigation.service';
 import { UUID } from "node:crypto";
 
 export async function createIrrigation(

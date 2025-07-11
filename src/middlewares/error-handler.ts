@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 
-import { ErrorResponse } from "../common/errors/response.error";
-import { InternalServerError } from "../common/errors/internal-server.error";
+import { ErrorResponse } from "../core/errors/response.error";
+import { InternalServerError } from "../core/errors/internal-server.error";
 import { ApiErrorResponse } from "../types/api-error-response";
 
 function normalizeError(err: unknown): ErrorResponse {

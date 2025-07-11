@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { ZodSchema } from "zod";
-import { BadRequestError } from "../common/errors/bad-request.error";
+import { BadRequestError } from "../core/errors/bad-request.error";
 
 export function withValidationHandler(schema: ZodSchema) {
   return (req: Request, res: Response, next: NextFunction): void => {

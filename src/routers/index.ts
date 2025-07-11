@@ -1,7 +1,7 @@
 import express from 'express';
-import { createAuthRouter } from './domain/auth/auth.routes';
-import { createPivotRouter } from './domain/pivots/pivot.routes';
-import { createIrrigationRouter } from './domain/irrigations/irrigation.router';
+import { createAuthRouter } from './auth.routes';
+import { createPivotRouter } from './pivot.routes';
+import { createIrrigationRouter } from './irrigation.router';
 
 const router = express.Router();
 

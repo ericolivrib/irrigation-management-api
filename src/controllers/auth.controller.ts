@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { RegisterUserRequest } from './dtos/register-user-request.dto';
-import { ApiResponse } from '../../types/api-response';
-import { RegisterUserResponse } from './dtos/register-user-response.dto';
-import { LoginRequest } from './dtos/login-request.dto';
-import { LoginResponse } from './dtos/login-response.dto';
-import * as authService from './auth.service';
+import { RegisterUserRequest } from '../schemas/register-user-request.dto';
+import { ApiResponse } from '../types/api-response';
+import { RegisterUserResponse } from '../schemas/register-user-response.dto';
+import { LoginRequest } from '../schemas/login-request.dto';
+import { LoginResponse } from '../schemas/login-response.dto';
+import * as authService from '../services/auth.service';
 
 export async function registerUser(
   req: Request<object, any, RegisterUserRequest>,
