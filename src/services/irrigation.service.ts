@@ -8,7 +8,7 @@ import { NotFoundError } from "../errors/not-found.error";
 const irrigations: Map<UUID, Irrigation> = new Map();
 
 export async function createIrrigation(userId: UUID, newIrrigation: IrrigationRequest): Promise<Irrigation> {
-  const pivot = await pivotService.getPivotById(newIrrigation.pivotId as UUID, userId);
+  const pivot = await pivotService.getPivotById(userId, newIrrigation.pivotId as UUID);
 
   const irrigation: Irrigation = {
     id: randomUUID(),
@@ -39,8 +39,11 @@ export async function getUserIrrigationById(userId: UUID, irrigationId: UUID): P
 
 export async function deleteIrrigation(userId: UUID, irrigationId: UUID): Promise<Irrigation> {
   const irrigation = await getUserIrrigationById(irrigationId, userId);
-  
+
   irrigations.delete(irrigation.id);
   return irrigation;
 }
 
+export async function existsIrrigationWithPivotId(pivotId: UUID): Promise<boolean> {
+  return Array.from(irrigations.values()).some(irr => irr.pivotId === pivotId);
+}
