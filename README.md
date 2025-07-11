@@ -34,7 +34,13 @@ docker run -p 3000:3000 -d irrigation-management-api:latest
 ```
 http://localhost:3000/
 ```
-  
+
+
+<h2>🌐 Endpoints</h2>
+
+Para realizar requisições na API, acesse o arquivo `/api/requests.http` disponibilizado para este fim.
+
+
   
 <h2>💻 Tecnologias</h2>
 
@@ -43,3 +49,4 @@ http://localhost:3000/
 *   Zod
 *   JWT
 *   TypeScript
+*   Docker
