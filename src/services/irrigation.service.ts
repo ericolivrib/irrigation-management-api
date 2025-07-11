@@ -38,7 +38,7 @@ export async function getUserIrrigationById(userId: UUID, irrigationId: UUID): P
 }
 
 export async function deleteIrrigation(userId: UUID, irrigationId: UUID): Promise<Irrigation> {
-  const irrigation = await getUserIrrigationById(irrigationId, userId);
+  const irrigation = await getUserIrrigationById(userId, irrigationId);
 
   irrigations.delete(irrigation.id);
   return irrigation;
