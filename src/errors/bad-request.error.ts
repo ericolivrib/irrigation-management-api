@@ -1,4 +1,4 @@
-import { ApiErrorResponse } from "../../types/api-error-response";
+import { ApiErrorResponse } from "../schemas/api-error-response.dto";
 import { ErrorResponse } from "./response.error";
 
 export class BadRequestError extends ErrorResponse {

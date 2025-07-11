@@ -1,5 +1,4 @@
-import { ApiErrorResponse } from "../../types/api-error-response";
-import { ApiResponse } from "../../types/api-response";
+import { ApiErrorResponse } from "../schemas/api-error-response.dto";
 
 export class ErrorResponse extends Error {
   readonly statusCode: number;
