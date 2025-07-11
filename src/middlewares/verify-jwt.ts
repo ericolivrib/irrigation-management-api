@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import * as jwt from 'jsonwebtoken';
 import { JWT_SECRET } from "../env/jwt.env";
-import { UnauthorizedError } from "../common/errors/unauthorized.error";
-import * as authService from "../domain/auth/auth.service";
+import { UnauthorizedError } from "../errors/unauthorized.error";
+import * as authService from "../services/auth.service";
 import { UUID } from "node:crypto";
 import { JwtPayload } from "jsonwebtoken";
 

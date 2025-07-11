@@ -1,9 +1,9 @@
 import express, { Router } from 'express';
-import { withValidationHandler } from '../../handlers/with-validation-handler';
-import { pivotRequestSchema } from './schemas/pivot-request.schema';
-import { withErrorHandler } from '../../handlers/with-error-handler';
-import * as pivotController from './pivot.controller';
-import { verifyJwt } from '../../middlewares/verify-jwt.middleware';
+import { withValidationHandler } from '../middlewares/with-validation-handler';
+import { pivotRequestSchema } from '../schemas/pivot-request.schema';
+import { withErrorHandler } from '../middlewares/with-error-handler';
+import * as pivotController from '../controllers/pivot.controller';
+import { verifyJwt } from '../middlewares/verify-jwt';
 
 export function createPivotRouter(): Router {
   const router = express.Router();

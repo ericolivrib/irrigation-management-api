@@ -1,7 +1,7 @@
 import { randomUUID, UUID } from "node:crypto";
-import { Pivot } from "../../common/models/pivot.model";
-import { PivotRequest } from "./dtos/pivot-request.dto";
-import { NotFoundError } from "../../common/errors/not-found.error";
+import { Pivot } from "../models/pivot.model";
+import { PivotRequest } from "../schemas/pivot-request.dto";
+import { NotFoundError } from "../errors/not-found.error";
 
 const pivots: Pivot[] = [];
 

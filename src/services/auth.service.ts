@@ -1,14 +1,14 @@
 import { randomUUID, UUID } from "node:crypto";
-import { User } from "../../common/models/user.model";
-import { RegisterUserRequest } from "./dtos/register-user-request.dto";
-import { RegisterUserResponse } from "./dtos/register-user-response.dto";
-import { ConflictError } from "../../common/errors/conflict.error";
-import { LoginResponse } from "./dtos/login-response.dto";
-import { UnauthorizedError } from "../../common/errors/unauthorized.error";
+import { User } from "../models/user.model";
+import { RegisterUserRequest } from "../schemas/register-user-request.dto";
+import { RegisterUserResponse } from "../schemas/register-user-response.dto";
+import { ConflictError } from "../errors/conflict.error";
+import { LoginResponse } from "../schemas/login-response.dto";
+import { UnauthorizedError } from "../errors/unauthorized.error";
+import { JWT_EXPIRES_IN, JWT_SECRET } from "../env/jwt.env";
 
 import * as jwt from "jsonwebtoken";
 import * as bcrypt from "bcryptjs";
-import { JWT_EXPIRES_IN, JWT_SECRET } from "../../env/jwt.env";
 
 const users: User[] = [];
 const SALT_ROUNDS = 10;
