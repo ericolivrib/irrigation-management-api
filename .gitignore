@@ -1,7 +1,1 @@
 node_modules
-
-# Environment variables
-src/env/.env
-
-# HTTP Client
-api/requests.http

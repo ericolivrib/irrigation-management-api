@@ -1,0 +1,80 @@
+### Registar usuário
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "username": "John Doe",
+  "password": "12345678"
+}
+
+### Fazer login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "username": "John Doe",
+  "password": "12345678"
+}
+
+### Criar um novo pivô
+POST http://localhost:3000/pivots
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJJcnJpZ2F0aW9uIE1hbmFnZW1lbnQgQVBJIiwic3ViIjoiOGQwMTkwYjctYjJkOS00MGI0LTkzNDktZjVkMTA3YTA4YWQ1IiwianRpIjoiMGFhZGJhY2YtMzUxNi00MTEzLWE3MGYtZjFiZDhhOTg1MDg1IiwiaWF0IjoxNzUyMTkzMTUzLCJleHAiOjE3NTIxOTY3NTN9.tWNQZr5riMPriHuGNjtLSSD_VFIyaA3jDTeLzVgxF-A
+
+{
+  "description": "Pivô Recém Instalado",
+  "flowRate": 180.0,
+  "minApplicationDepth": 6.0
+}
+
+### Buscar os pivôs do usuário
+GET http://localhost:3000/pivots
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJJcnJpZ2F0aW9uIE1hbmFnZW1lbnQgQVBJIiwic3ViIjoiOGQwMTkwYjctYjJkOS00MGI0LTkzNDktZjVkMTA3YTA4YWQ1IiwianRpIjoiMGFhZGJhY2YtMzUxNi00MTEzLWE3MGYtZjFiZDhhOTg1MDg1IiwiaWF0IjoxNzUyMTkzMTUzLCJleHAiOjE3NTIxOTY3NTN9.tWNQZr5riMPriHuGNjtLSSD_VFIyaA3jDTeLzVgxF-A
+
+### Buscar pivô por ID
+GET http://localhost:3000/pivots/e53f8d6b-8b4d-4154-9260-3b520b4de9e7
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJJcnJpZ2F0aW9uIE1hbmFnZW1lbnQgQVBJIiwic3ViIjoiOGQwMTkwYjctYjJkOS00MGI0LTkzNDktZjVkMTA3YTA4YWQ1IiwianRpIjoiMGFhZGJhY2YtMzUxNi00MTEzLWE3MGYtZjFiZDhhOTg1MDg1IiwiaWF0IjoxNzUyMTkzMTUzLCJleHAiOjE3NTIxOTY3NTN9.tWNQZr5riMPriHuGNjtLSSD_VFIyaA3jDTeLzVgxF-A
+
+### Atualizar pivô
+PUT http://localhost:3000/pivots/e53f8d6b-8b4d-4154-9260-3b520b4de9e7
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJJcnJpZ2F0aW9uIE1hbmFnZW1lbnQgQVBJIiwic3ViIjoiOGQwMTkwYjctYjJkOS00MGI0LTkzNDktZjVkMTA3YTA4YWQ1IiwianRpIjoiMGFhZGJhY2YtMzUxNi00MTEzLWE3MGYtZjFiZDhhOTg1MDg1IiwiaWF0IjoxNzUyMTkzMTUzLCJleHAiOjE3NTIxOTY3NTN9.tWNQZr5riMPriHuGNjtLSSD_VFIyaA3jDTeLzVgxF-A
+
+{
+  "description": "Pivô Recém Atualizado",
+  "flowRate": 18.0,
+  "minApplicationDepth": 46.0
+}
+
+### Deletar pivô
+DELETE http://localhost:3000/pivots/e53f8d6b-8b4d-4154-9260-3b520b4de9e7
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJJcnJpZ2F0aW9uIE1hbmFnZW1lbnQgQVBJIiwic3ViIjoiOGQwMTkwYjctYjJkOS00MGI0LTkzNDktZjVkMTA3YTA4YWQ1IiwianRpIjoiMGFhZGJhY2YtMzUxNi00MTEzLWE3MGYtZjFiZDhhOTg1MDg1IiwiaWF0IjoxNzUyMTkzMTUzLCJleHAiOjE3NTIxOTY3NTN9.tWNQZr5riMPriHuGNjtLSSD_VFIyaA3jDTeLzVgxF-A
+
+### Registrar irrigação
+POST http://localhost:3000/irrigations
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJJcnJpZ2F0aW9uIE1hbmFnZW1lbnQgQVBJIiwic3ViIjoiOGQwMTkwYjctYjJkOS00MGI0LTkzNDktZjVkMTA3YTA4YWQ1IiwianRpIjoiMGFhZGJhY2YtMzUxNi00MTEzLWE3MGYtZjFiZDhhOTg1MDg1IiwiaWF0IjoxNzUyMTkzMTUzLCJleHAiOjE3NTIxOTY3NTN9.tWNQZr5riMPriHuGNjtLSSD_VFIyaA3jDTeLzVgxF-A
+
+{
+  "pivotId": "e53f8d6b-8b4d-4154-9260-3b520b4de9e7",
+  "applicationAmount": 180.0,
+  "irrigationDate": "2025-07-01T10:00:00Z"
+}
+
+### Buscar irrigações do usuário
+GET http://localhost:3000/irrigations
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJJcnJpZ2F0aW9uIE1hbmFnZW1lbnQgQVBJIiwic3ViIjoiOGQwMTkwYjctYjJkOS00MGI0LTkzNDktZjVkMTA3YTA4YWQ1IiwianRpIjoiMGFhZGJhY2YtMzUxNi00MTEzLWE3MGYtZjFiZDhhOTg1MDg1IiwiaWF0IjoxNzUyMTkzMTUzLCJleHAiOjE3NTIxOTY3NTN9.tWNQZr5riMPriHuGNjtLSSD_VFIyaA3jDTeLzVgxF-A
+
+### Buscar irrigação por ID
+GET http://localhost:3000/irrigations/a140a1be-3216-4cb6-b81d-f5ef53848978
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJJcnJpZ2F0aW9uIE1hbmFnZW1lbnQgQVBJIiwic3ViIjoiOGQwMTkwYjctYjJkOS00MGI0LTkzNDktZjVkMTA3YTA4YWQ1IiwianRpIjoiMGFhZGJhY2YtMzUxNi00MTEzLWE3MGYtZjFiZDhhOTg1MDg1IiwiaWF0IjoxNzUyMTkzMTUzLCJleHAiOjE3NTIxOTY3NTN9.tWNQZr5riMPriHuGNjtLSSD_VFIyaA3jDTeLzVgxF-A
+
+### Deletar irrigação
+DELETE http://localhost:3000/irrigations/a140a1be-3216-4cb6-b81d-f5ef53848978
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJJcnJpZ2F0aW9uIE1hbmFnZW1lbnQgQVBJIiwic3ViIjoiOGQwMTkwYjctYjJkOS00MGI0LTkzNDktZjVkMTA3YTA4YWQ1IiwianRpIjoiMGFhZGJhY2YtMzUxNi00MTEzLWE3MGYtZjFiZDhhOTg1MDg1IiwiaWF0IjoxNzUyMTkzMTUzLCJleHAiOjE3NTIxOTY3NTN9.tWNQZr5riMPriHuGNjtLSSD_VFIyaA3jDTeLzVgxF-A
